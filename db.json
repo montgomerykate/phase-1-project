@@ -1,19 +1,19 @@
 {
   "pokeNames": [
     {
-      "name": "bulbasaur",
+        "name": "bulbasaur",
       "url": "https://pokeapi.co/api/v2/pokemon/1/",
-      "image": "https://pngset.com/images/bulbasaur-pokemon-green-plant-angry-birds-transparent-png-882144.png"
+      "image": "https://static.wikia.nocookie.net/pokemon/images/2/21/001Bulbasaur.png/revision/latest/scale-to-width-down/200?cb=20200620223551"
       },
       {
       "name": "ivysaur",
       "url": "https://pokeapi.co/api/v2/pokemon/2/",
-      "image": "https://www.pngfind.com/pngs/m/142-1428059_ivysaur-png-transparent-png.png"
+      "image": "https://static.wikia.nocookie.net/pokemon/images/7/73/002Ivysaur.png/revision/latest/scale-to-width-down/200?cb=20140328190847"
       },
       {
       "name": "venusaur",
       "url": "https://pokeapi.co/api/v2/pokemon/3/",
-      "image": "https://www.pngfind.com/pngs/m/685-6854680_download-mega-venusaur-png-mega-venusaur-transparent-png.png"
+      "image": "https://static.wikia.nocookie.net/pokemon/images/a/ae/003Venusaur.png/revision/latest/scale-to-width-down/200?cb=20200731133335"
       },
       {
       "name": "charmander",
