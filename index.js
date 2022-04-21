@@ -1,45 +1,84 @@
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('http://localhost:3000/pokeNames')
-      .then(resp => resp.json())
-      .then(pokemon => renderAllPokemon(pokemon))
+const allDataFrame = document.getElementById("pokeNames");
+const mainImage = document.getElementById("image");
+const toggleSwitch = document.getElementById("switch");
+const pokemonDataFrame = document.getElementById('pokemonData');
+const pokemonAbilities = document.getElementById('abilities');
+const pokemonWeight = document.getElementById('weight');
+const allPokeFrame = document.createElement("div");
+const grassDiv = document.createElement("div");
+const waterDiv = document.createElement("div");
+const firediv = document.createElement("div");
+
+
+
+const renderAbilities = (abilities) => {
+  let abilitiesString = '';
+  abilities.forEach((item, index) => {
+    abilitiesString += `${abilities.length > 1 && index !== 0 ? ', ' : ''} ${item.ability.name}`;
+  })
+  return abilitiesString;
+}
+
+const getAbilities = async (pokemon) => {
+  return await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+  .then(res => { return res.json() })
+  .then(data => {
+    return {
+      abilities: data.abilities,
+      weight: data.weight
+    };
+  })
+}
+
+const renderAllPokemon = (arrOfObj) => {
+  arrOfObj.forEach( async (pokemon) => {
+    const abilities = await getAbilities(pokemon);
+    const pokemonImg = document.createElement("img");
+    pokemonImg.style.height = "120px";
+    pokemonImg.style.width = "120px";
+    pokemonImg.style.marginTop = "1.5%";
+    pokemonImg.style.marginLeft = "5%";
+    pokemonImg.style.marginRight = "5%";
+    pokemonImg.style.borderRadius = "50%";
+    pokemonImg.style.border = "2px solid rgba(0,0,0,0.2)";
+    pokemonImg.style.backgroundColor = "rgba(52, 152, 219, 0.2)";
+    pokemonImg.addEventListener("mouseover", () => {
+      mainImage.src = pokemon.image;
+      pokemonDataFrame.style.display = '';
+      pokemonAbilities.innerHTML = renderAbilities(abilities.abilities);
+      pokemonWeight.innerHTML = abilities.weight;
+    });
+    if (pokemon.power === 1) {
+      pokemonImg.src = pokemon.image;
+      grassDiv.append(pokemonImg);
+    } else if (pokemon.power === 2) {
+      pokemonImg.src = pokemon.image;
+      waterDiv.append(pokemonImg);
+    } else if (pokemon.power === 3) {
+      pokemonImg.src = pokemon.image;
+      firediv.append(pokemonImg);
+    }
   });
+  allPokeFrame.append(grassDiv);
+  allPokeFrame.append(waterDiv);
+  allPokeFrame.append(firediv);
+  allDataFrame.append(allPokeFrame);
+};
 
-  const renderAllPokemon = (arrOfObj) => {
-      const div = document.getElementById('detailed-info')
-      arrOfObj.forEach(pokeNames => {
-          const img =document.createElement("img")
-          img.src = pokeNames.image
-          img.id = pokeNames.id
-          document.getElementById('pokeimages').append(img)
-      })
-  }
+mainImage.addEventListener("click", () => {
+  mainImage.style.marginTop = "0%";
+  mainImage.style.width = "200px";
+  mainImage.style.height = "200px";
+  mainImage.src = "./assets/openBall.png";
+  allDataFrame.style.display = "";
+});
 
- const pokemonName =() => {
-     image.addEventListener("mouseover", () => {
-         
-     })
- }
-
-  const styleElements = (frame, image) => {
-    frame.style.display = 'inline-block'
-    frame.style.flexDirection = 'row';
-    image.style.width = '350px';
-    image.style.height = '350px';
-    image.style.borderRadius = '1.5%';
-    image.style.marginLeft = '2%';
-    image.style.marginRight = '2%';
-    image.style.marginTop = '2%';
-}
-
-  const eventListeners = (image, pokemon) => {
-    image.addEventListener('mouseenter', () => {
-        image.style.height = '500px';
-        image.style.width = '500px';
-        image.style.left = timePassed / 5 + 'px';
+document.addEventListener("DOMContentLoaded", async () => {
+  await fetch("http://localhost:3000/pokeNames")
+    .then((resp) => {
+      return resp.json();
     })
-    image.addEventListener('mouseleave', () => {
-        image.style.height = '350px';
-        image.style.width = '350px';
-    })
-    const frame = document.createElement('div');
-}
+    .then((pokemon) => {
+      renderAllPokemon(pokemon);
+    });
+});
