@@ -1,34 +1,50 @@
 <html>
   <head>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <div class="logo">
-      <h1>Mini Pokedex</h1>
+    <div
+      style="width: 100%; height: 10%; text-align: center; margin-top: 1%"
+      class="logo"
+    >
+      <h1>Choose Your Pokemon</h1>
     </div>
-
-    <div id="pokeNames">
-      <!-- show characters names here -->
-    </div>
-
     <div class="pokemonInfo">
-      <div id="pokedex">
-        <p id="name">Pokemon Images</p>
+      <div style="width: 100%; text-align: center" id="pokedex">
         <img
           id="image"
-          src="assets/pokedex.jpg"
+          style="
+            width: 300px;
+            height: 300px;
+            margin-top: 10%;
+            margin-bottom: 3%;
+          "
+          src="./assets/closeBall.png"
           alt="Character's Name"
-    
-          /><!-- display character image here -->
-        
+        />
+        <div id="pokemonData" style="display: none; margin-top: -2%; margin-bottom: 2%;">
+          <div>
+            <text>Abilities: </text>
+            <text id="abilities"></text>
+          </div>
+          <div>
+            <text>Weight: </text>
+            <text id="weight"></text>
+          </div>
         </div>
-      <div id = "pokeimages">
-
       </div>
-
-    
+      <div
+        style="
+          height: 100%;
+          width: 100%;
+          margin: auto;
+          text-align: center;
+          display: none;
+        "
+        id="pokeNames"
+      ></div>
     </div>
     <script src="index.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </body>
 </html>
